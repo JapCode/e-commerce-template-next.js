@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+
 "use client";
 
 import { Button, buttonVariants } from "@/components/Button";
@@ -9,6 +11,7 @@ import {
   AuthCredentialsValidator,
   TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator";
+import trpc from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -23,7 +26,10 @@ const SingUp = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
-  const onSubmit = (data: TAuthCredentialsValidator) => {
+  const { data } = trpc.anyApiRoute.useQuery();
+  console.log(data);
+
+  const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
     console.log(data);
   };
 
