@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { inferAsyncReturnType } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import getPayloadClient from "./get-payload";
@@ -20,6 +21,8 @@ const createContext = ({
   req,
   res,
 });
+
+export type TExpressContext = inferAsyncReturnType<typeof createContext>;
 
 const start = async () => {
   const payload = await getPayloadClient({

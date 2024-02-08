@@ -2157,6 +2157,13 @@
   dependencies:
     undici-types "~5.26.4"
 
+"@types/nodemailer@^6.4.14":
+  version "6.4.14"
+  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.14.tgz#5c81a5e856db7f8ede80013e6dbad7c5fb2283e2"
+  integrity sha512-fUWthHO9k9DSdPCSPRqcu6TWhYyxTBg382vlNIttSe9M7XfsT06y0f24KHXtbnijPGGRIcVvdKHTNikOI6qiHA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/parse-json@^4.0.0":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.2.tgz#5950e50960793055845e956c427fc2b0d70c5239"
@@ -6297,6 +6304,11 @@ nodemailer@6.9.8:
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.9.8.tgz#29601e80440f2af7aa62b32758fdac7c6b784143"
   integrity sha512-cfrYUk16e67Ks051i4CntM9kshRYei1/o/Gi8K1d+R34OIs21xdFnW7Pt7EucmVKA0LKtqUGNcjMZ7ehjl49mQ==
 
+nodemailer@^6.9.9:
+  version "6.9.9"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.9.9.tgz#4549bfbf710cc6addec5064dd0f19874d24248d9"
+  integrity sha512-dexTll8zqQoVJEZPwQAKzxxtFn0qTnjdQTchoU6Re9BUUGBJiOy3YMn/0ShTW6J5M0dfQ1NeDeRTTl4oIWgQMA==
+
 nodemon@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-3.0.3.tgz#244a62d1c690eece3f6165c6cdb0db03ebd80b76"
@@ -8306,6 +8318,11 @@ sonic-boom@^3.0.0, sonic-boom@^3.1.0:
   integrity sha512-ybz6OYOUjoQQCQ/i4LU8kaToD8ACtYP+Cj5qd2AO36bwbdewxWJ3ArmJ2cr6AvxlL2o0PqnCcPGUgkILbfkaCA==
   dependencies:
     atomic-sleep "^1.0.0"
+
+sonner@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.4.0.tgz#f71b0576909043f6b32f05ff796c86ef6b97350a"
+  integrity sha512-nvkTsIuOmi9e5Wz5If8ldasJjZNVfwiXYijBi2dbijvTQnQppvMcXTFNxL/NUFWlI2yJ1JX7TREDsg+gYm9WyA==
 
 source-list-map@^2.0.0:
   version "2.0.1"
