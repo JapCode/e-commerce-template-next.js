@@ -1,12 +1,17 @@
+import getServerSideUser from "@/lib/payload-utils";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { buttonVariants } from "./Button";
 import Cart from "./Cart";
 import Icons from "./Icons";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import NavItems from "./NavItems";
+import UserAccountNav from "./UserAccountNav";
 
-const NavBar = () => {
-  const user = null;
+const NavBar = async () => {
+  const nextCookies = cookies();
+  const { user } = await getServerSideUser(nextCookies);
+
   return (
     <div className="sticky inset-x-0 top-0 z-50 h-16 bg-white">
       <header className="relative bg-white">
@@ -38,7 +43,7 @@ const NavBar = () => {
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   )}
                   {user ? (
-                    <p></p>
+                    <UserAccountNav user={user} />
                   ) : (
                     <Link
                       href="sig-in"
