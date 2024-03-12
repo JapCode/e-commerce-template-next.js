@@ -67,7 +67,7 @@ const authRouter = router({
           },
           res,
         });
-        return { succes: true, message: "Logged in successfully" };
+        return { success: true, message: "Logged in successfully" };
       } catch (error) {
         throw new TRPCError({
           code: "UNAUTHORIZED",

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { Product } from "@/payload-types";
 import { User } from "payload/dist/auth";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
@@ -107,9 +108,9 @@ const Products: CollectionConfig = {
       type: "select",
       defaultValue: "pending",
       access: {
-        create: ({ req }) => req.user.role === "admin",
-        read: ({ req }) => req.user.role === "admin",
-        update: ({ req }) => req.user.role === "admin",
+        create: ({ req }) => (req.user as User | undefined)?.role === "admin",
+        read: ({ req }) => (req.user as User | undefined)?.role === "admin",
+        update: ({ req }) => (req.user as User | undefined)?.role === "admin",
       },
       options: [
         {

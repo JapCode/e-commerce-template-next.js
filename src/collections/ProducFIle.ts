@@ -2,7 +2,7 @@ import { BeforeChangeHook } from "payload/dist/collections/config/types";
 import { Access, CollectionConfig } from "payload/types";
 import { User } from "../payload-types";
 
-const addUser: BeforeChangeHook = async ({ req, data }) => {
+const addUser: BeforeChangeHook = ({ req, data }) => {
   const user = req.user as User | null;
   return { ...data, user: user?.id };
 };
@@ -15,6 +15,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
 
   const { docs: products } = await req.payload.find({
     collection: "products",
+    depth: 0,
     where: {
       user: {
         equals: user.id,
@@ -44,7 +45,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
 
         return typeof product.product_files === "string"
           ? product.product_files
-          : product.product_files;
+          : product.product_files.id;
       });
     })
     .filter(Boolean)
@@ -67,8 +68,8 @@ const ProductFiles: CollectionConfig = {
   },
   access: {
     read: yourOwnAndPurchased,
-    update: ({ req }) => req.user?.role === "admin",
-    delete: ({ req }) => req.user?.role === "admin",
+    update: ({ req }) => (req.user as User | undefined)?.role === "admin",
+    delete: ({ req }) => (req.user as User | undefined)?.role === "admin",
   },
   upload: {
     staticURL: "/product_files",

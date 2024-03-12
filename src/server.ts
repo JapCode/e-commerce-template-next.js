@@ -6,10 +6,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { inferAsyncReturnType } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
+import bodyParser from "body-parser";
 import express from "express";
+import { IncomingMessage } from "http";
 import getPayloadClient from "./get-payload";
 import { nextApp, nextHandler } from "./next-utils";
 import { appRouter } from "./trpc";
+import stripeWebhookHandler from "./webhooks";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
@@ -24,7 +27,17 @@ const createContext = ({
 
 export type TExpressContext = inferAsyncReturnType<typeof createContext>;
 
+export type TWebhookRequest = IncomingMessage & { rawBody: Buffer };
+
 const start = async () => {
+  const webhookMiddleware = bodyParser.json({
+    verify: (req: TWebhookRequest, _, buffer) => {
+      req.rawBody = buffer;
+    },
+  });
+
+  app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler);
+
   const payload = await getPayloadClient({
     initOptions: {
       express: app,
